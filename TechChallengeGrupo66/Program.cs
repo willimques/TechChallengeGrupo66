@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Infra.Cross.Cutting;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 

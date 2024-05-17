@@ -10,6 +10,11 @@ namespace Domain.Interfaces
 {
     public interface IContatoService
     {
-        Task<IEnumerable<Contato>> GetAll();
+        Task<IEnumerable<Contato>> GetAllAsync();
+        Task<Contato> GetByIdAsync(int id);
+        Task AddAsync(Contato item);
+        Task UpdateAsync(Contato item);
+        Task DeleteAsync(int id);
+        Task<IEnumerable<Contato>> GetAllByRegionAsync(int idRegiao);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,11 @@ namespace Domain.Entities
     [Table("Contatos")]
     public class Contato
     {
-        public string Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public required string Nome { get; set; }
+        public required string Email { get; set; }
+        public required string Telefone { get; set; }
         
     }
 }

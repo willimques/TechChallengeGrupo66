@@ -26,7 +26,7 @@ namespace Infra.Data.Repository
             await _context.InsertAsync(item);
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(int id)
         {
             var item = await _context.GetAsync<T>(id);
 
@@ -37,7 +37,7 @@ namespace Infra.Data.Repository
         }
 
        
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _context.GetAsync<T>(id);
         }

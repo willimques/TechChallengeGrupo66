@@ -12,7 +12,12 @@ namespace Infra.Data.Repository
     public class ContatoRepository : Repository<Contato>, IContatoRepository
     {
         public ContatoRepository(IDbConnection context) : base(context)
+        {            
+        }
+
+        public Task<IEnumerable<Contato>> GetAllByRegionAsync(int idRegiao)
         {
+            throw new NotImplementedException();
         }
     }
 }
