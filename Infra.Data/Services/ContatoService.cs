@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Infra.Data.Interfaces;
 using Domain.Entities;
 using Infra.Data.Repository;
+using Domain.Entities.Enum;
 
 namespace Domain.Services
 {
@@ -43,7 +44,7 @@ namespace Domain.Services
             await _contatoRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<Contato>> GetAllByRegionAsync(int idRegiao)
+        public async Task<IEnumerable<Contato>> GetAllByRegionAsync(RegionsType idRegiao)
         {
            return await _contatoRepository.GetAllByRegionAsync(idRegiao);
         }

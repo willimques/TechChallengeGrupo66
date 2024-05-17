@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Enum;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TechChallengeGrupo66.Controllers
 {
@@ -18,6 +20,11 @@ namespace TechChallengeGrupo66.Controllers
         }
         
         [HttpGet, Route("/GetAll")]
+        [SwaggerOperation(
+            Summary = "Carrega todos os contatos",
+            OperationId = "GetAll",
+            Tags = new[] { "LISTAR" }
+        )]
         public async Task<IActionResult> GetAllAsync()
         {
 
@@ -26,6 +33,11 @@ namespace TechChallengeGrupo66.Controllers
         }
 
         [HttpGet, Route("/GetById")]
+        [SwaggerOperation(
+            Summary = "Carrega um contato por Id",
+            OperationId = "GetByIdAsync",
+            Tags = new[] { "LISTAR" }
+        )]
         public async Task<IActionResult> GetByIdAsync([FromQuery] int id)
         {
 
@@ -34,14 +46,27 @@ namespace TechChallengeGrupo66.Controllers
         }
 
         [HttpGet, Route("/GetAllByRegion")]
-        public async Task<IActionResult> GetAllByRegion([FromQuery] int id)
+        [SwaggerOperation(
+            Summary = "Carrega todos os contatos de uma Região",
+            Description = "<br/> 1- Norte <br/> 2- Nordeste <br/> 3- Centro-Oeste <br/> 4- Sudeste <br/> 5- Sul",
+            OperationId = "GetAllByRegion",
+            Tags = new[] { "LISTAR" }
+        )]
+        public async Task<IActionResult> GetAllByRegion([FromQuery] RegionsType id)
         {
 
             var result = await _contatoService.GetAllByRegionAsync(id);
             return Ok(result);
         }
 
+
         [HttpPost, Route("/Add")]
+        [SwaggerOperation(
+            Summary = "Adicionar contatos",
+            Description = "Metodos para adicionar contatos",
+            OperationId = "Add",
+            Tags = new[] { "CRUD" }
+        )]
         public async Task<IActionResult> AddAsync(Contato item)
         {
             await _contatoService.AddAsync(item);
@@ -49,6 +74,12 @@ namespace TechChallengeGrupo66.Controllers
         }
 
         [HttpDelete, Route("/Remove")]
+        [SwaggerOperation(
+            Summary = "Remover contatos",
+            Description = "Metodo para Remover contatos",
+            OperationId = "Remove",
+            Tags = new[] { "CRUD" }
+        )]
         public async Task<IActionResult> DeleteAsync([FromQuery] int id)
         {
             await _contatoService.DeleteAsync(id);
@@ -56,6 +87,12 @@ namespace TechChallengeGrupo66.Controllers
         }
 
         [HttpPost, Route("/Update")]
+        [SwaggerOperation(
+            Summary = "Update contatos",
+            Description = "Metodo para Update de contatos",
+            OperationId = "Update",
+            Tags = new[] { "CRUD" }
+        )]
         public async Task<IActionResult> UpdateAsync(Contato item)
         {
             await _contatoService.UpdateAsync(item);

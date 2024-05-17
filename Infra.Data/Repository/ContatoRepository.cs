@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Enum;
 using Infra.Data.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Infra.Data.Repository
         {            
         }
 
-        public Task<IEnumerable<Contato>> GetAllByRegionAsync(int idRegiao)
+        public Task<IEnumerable<Contato>> GetAllByRegionAsync(RegionsType idRegiao)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace Domain.Interfaces
         Task AddAsync(Contato item);
         Task UpdateAsync(Contato item);
         Task DeleteAsync(int id);
-        Task<IEnumerable<Contato>> GetAllByRegionAsync(int idRegiao);
+        Task<IEnumerable<Contato>> GetAllByRegionAsync(RegionsType idRegiao);
     }
 }
