@@ -11,7 +11,7 @@ namespace Infra.Data.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(string id);
         Task AddAsync(T item);
-        Task UpdateAsync(string id, T item);
+        Task UpdateAsync(T item);
         Task DeleteAsync(string id);
 
     }

@@ -1,37 +1,50 @@
-﻿using Infra.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dapper.Contrib.Extensions;
+using Infra.Data.Interfaces;
+using System.Data;
+
 
 namespace Infra.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        public Task AddAsync(T item)
+
+        private readonly IDbConnection _context;
+
+        public Repository(IDbConnection context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteAsync(string id)
+
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.GetAllAsync<T>();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task AddAsync(T item)
         {
-            throw new NotImplementedException();
+            await _context.InsertAsync(item);
         }
 
-        public Task<T> GetByIdAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var item = await _context.GetAsync<T>(id);
+
+            if (item != null)
+            {
+                await _context.DeleteAsync(item);
+            }
         }
 
-        public Task UpdateAsync(string id, T item)
+       
+        public async Task<T> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _context.GetAsync<T>(id);
+        }
+
+        public async Task UpdateAsync(T item)
+        {
+            await _context.UpdateAsync(item);            
         }
     }
 }

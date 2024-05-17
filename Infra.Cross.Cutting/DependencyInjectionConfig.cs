@@ -1,19 +1,23 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Domain.Entities;
+using Domain.Interfaces;
+using Domain.Services;
+using Infra.Data.Interfaces;
+using Infra.Data.Repository;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Infra.Cross.Cutting
 {
     public static class DependencyInjectionConfig
+
     {
         public static IServiceCollection AddProjectDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             AddRepositoryServices(services, configuration);
             AddDatabaseServices(services, configuration);
+            
 
 
             //// Outras categorias de dependências podem ser adicionadas aqui
@@ -23,13 +27,26 @@ namespace Infra.Cross.Cutting
         private static void AddRepositoryServices(IServiceCollection services, IConfiguration configuration)
         {
             // Exemplo de registro de repositórios
-           // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
-            
+
+            services.AddScoped<IContatoRepository, ContatoRepository>();
+            services.AddScoped<IContatoService, ContatoService>();
+           
+
+            // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
+
         }
 
 
         private static void AddDatabaseServices(IServiceCollection services, IConfiguration configuration)
         {
+
+           // Read the connection string from appsettings.
+            var dbConnectionString = configuration.GetConnectionString("DefaultConnection");
+
+            // Inject IDbConnection, with implementation from SqlConnection class.
+            services.AddScoped<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
+
+
             //// Configuração para DbContext do SQL Server
             //var sqlConnectionString = configuration.GetConnectionString("SqlServerConnection");
             //services.AddDbContext<ApplicationDbContext>(options =>
