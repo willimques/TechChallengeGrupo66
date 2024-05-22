@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "TechChallengeGrupo66\Application.csproj", "{199F690E-FBBD-4847-8B6B-83C1A14ED420}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "TechChallengeGrupo66\Application.csproj", "{199F690E-FBBD-4847-8B6B-83C1A14ED420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{86401684-71B6-4408-A647-33CE3762F9AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{86401684-71B6-4408-A647-33CE3762F9AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Data", "Infra.Data\Infra.Data.csproj", "{05A21994-061E-4068-BD76-FEEC26E534CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Data", "Infra.Data\Infra.Data.csproj", "{05A21994-061E-4068-BD76-FEEC26E534CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Cross.Cutting", "Infra.Cross.Cutting\Infra.Cross.Cutting.csproj", "{28737682-6FAD-4507-90FC-ECA9960E8271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Cross.Cutting", "Infra.Cross.Cutting\Infra.Cross.Cutting.csproj", "{28737682-6FAD-4507-90FC-ECA9960E8271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{C4CF7240-2FF9-4E3B-83E0-6857CB8D063D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{28737682-6FAD-4507-90FC-ECA9960E8271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28737682-6FAD-4507-90FC-ECA9960E8271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28737682-6FAD-4507-90FC-ECA9960E8271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4CF7240-2FF9-4E3B-83E0-6857CB8D063D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4CF7240-2FF9-4E3B-83E0-6857CB8D063D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4CF7240-2FF9-4E3B-83E0-6857CB8D063D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4CF7240-2FF9-4E3B-83E0-6857CB8D063D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
