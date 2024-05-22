@@ -62,7 +62,21 @@ namespace TestProject
             {
                 // Arrange
                 var id = RegionsType.Norte;
-                var contatos = new List<Contato> { new Contato(), new Contato() };
+                var contatos = new List<Contato> { 
+                    new Contato() {
+                        Id = 1,
+                        Nome = "kiko",
+                        Email = "chaves@teste.com.br",
+                        DDD_ID = 43,
+                        Telefone = "1234-5678"
+                    },
+                    new Contato() {
+                        Nome  = "Chaves do oito",
+                        Email = "chaves@teste.com.br",
+                        DDD_ID = 41,
+                        Telefone = "1234-5678"
+                    } 
+                };
                 _contatoServiceMock.Setup(x => x.GetAllByRegionAsync(id)).ReturnsAsync(contatos);
 
                 // Act
@@ -80,7 +94,7 @@ namespace TestProject
                 // Arrange
                 var contato = new Contato() { 
                     Nome  = "Chaves do oito",
-                    Email = "chaves@sbt.com.br",
+                    Email = "chaves@teste.com.br",
                     DDD_ID = 41,
                     Telefone = "1234-5678"
                 };
@@ -101,7 +115,7 @@ namespace TestProject
                 var contato = new Contato()
                 {
                     Nome = "Chaves do oito",
-                    Email = "chaves@sbt.com.br",
+                    Email = "chaves@teste.com.br",
                     DDD_ID = 99,
                     Telefone = "991234-5678"
                 };
@@ -136,8 +150,8 @@ namespace TestProject
                 var contato = new Contato()
                 {
                     Id = 1,
-                    Nome = "Chaves do oito",
-                    Email = "chaves@sbt.com.br",
+                    Nome = "kiko",
+                    Email = "chaves@teste.com.br",
                     DDD_ID = 43,
                     Telefone = "1234-5678"
                 };
