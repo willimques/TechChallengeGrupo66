@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Enum;
 using Domain.Interfaces;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -13,6 +14,8 @@ namespace TechChallengeGrupo66.Controllers
     public class Controller : ControllerBase
     {
         private readonly IContatoService _contatoService;
+        private IValidator<Contato> validator = new ContatoValidator();
+
 
         public Controller(IContatoService contatoService)
         {
@@ -69,9 +72,11 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> AddAsync(Contato item)
         {
-            if (!ModelState.IsValid)
+            var validationResult = validator.Validate(item);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validationResult);
             }
 
 
@@ -102,10 +107,13 @@ namespace TechChallengeGrupo66.Controllers
         public async Task<IActionResult> UpdateAsync(Contato item)
 
         {
-            if (!ModelState.IsValid)
+            var validationResult = validator.Validate(item);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validationResult);
             }
+
             await _contatoService.UpdateAsync(item);
             return Ok(item);
         }

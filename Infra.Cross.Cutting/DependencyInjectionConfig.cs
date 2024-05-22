@@ -35,12 +35,7 @@ namespace Infra.Cross.Cutting
             services.AddScoped<IContatoService, ContatoService>();
             services.AddScoped<IDddService, DddService>();
 
-            // Registro do FluentValidation
-            // Registro do FluentValidation
-           // services.AddValidatorsFromAssemblyContaining<ContatoValidator>();
-            services.AddFluentValidationAutoValidation();
-            services.AddFluentValidationClientsideAdapters();
-
+            services.AddValidatorsFromAssemblyContaining<ContatoValidator>();
 
             // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
 

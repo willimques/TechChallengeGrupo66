@@ -22,7 +22,7 @@ namespace Domain.Entities
             RuleFor(contato => contato.Nome).NotEmpty().WithMessage("O nome é obrigatório.");
             RuleFor(contato => contato.Email).NotEmpty().EmailAddress().WithMessage("O email é obrigatório e deve ser válido.");
             RuleFor(contato => contato.Telefone).NotEmpty().WithMessage("O telefone é obrigatório.")
-                .Matches(@"^\s\d{4,5}-\d{4}$").WithMessage("O telefone deve estar no formato XXXX-XXXX ou XXXXX-XXXX.");
+                .Matches(@"^\d{4,5}-\d{4}$").WithMessage("O telefone deve estar no formato XXXX-XXXX ou XXXXX-XXXX.");
         }
     }
 }
