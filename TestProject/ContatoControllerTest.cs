@@ -71,6 +71,7 @@ namespace TestProject
                         Telefone = "1234-5678"
                     },
                     new Contato() {
+                        Id = 1,
                         Nome  = "Chaves do oito",
                         Email = "chaves@teste.com.br",
                         DDD_ID = 41,
