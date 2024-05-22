@@ -69,6 +69,12 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> AddAsync(Contato item)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
             await _contatoService.AddAsync(item);
             return Created();
         }
@@ -94,7 +100,12 @@ namespace TechChallengeGrupo66.Controllers
             Tags = new[] { "CRUD" }
         )]
         public async Task<IActionResult> UpdateAsync(Contato item)
+
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _contatoService.UpdateAsync(item);
             return Ok(item);
         }

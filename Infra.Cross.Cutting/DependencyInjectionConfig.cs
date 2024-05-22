@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infra.Data.Interfaces;
 using Infra.Data.Repository;
 using Microsoft.Extensions.Configuration;
@@ -29,8 +31,16 @@ namespace Infra.Cross.Cutting
             // Exemplo de registro de repositórios
 
             services.AddScoped<IContatoRepository, ContatoRepository>();
+            services.AddScoped<IDddRepository, DddRepository>();
             services.AddScoped<IContatoService, ContatoService>();
-           
+            services.AddScoped<IDddService, DddService>();
+
+            // Registro do FluentValidation
+            // Registro do FluentValidation
+           // services.AddValidatorsFromAssemblyContaining<ContatoValidator>();
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
+
 
             // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
 

@@ -15,10 +15,12 @@ namespace Domain.Services
     {
 
         private readonly IContatoRepository _contatoRepository;
+        private readonly IDddRepository _dddRepository;
 
-        public ContatoService(IContatoRepository contatoRepository)
+        public ContatoService(IContatoRepository contatoRepository, IDddRepository dddRepository)
         {
             _contatoRepository = contatoRepository;
+            _dddRepository = dddRepository; 
         }
 
         public async Task<IEnumerable<Contato>> GetAllAsync()
@@ -31,8 +33,20 @@ namespace Domain.Services
             return await _contatoRepository.GetByIdAsync(id);
         }
         public async Task AddAsync(Contato item)
+
         {
-            await _contatoRepository.AddAsync(item);
+
+           var _ddd_id  = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }else
+            {
+                await _contatoRepository.AddAsync(item);
+            }
+        
+            
         }
         public async Task UpdateAsync(Contato item)
         {
