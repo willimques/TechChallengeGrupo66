@@ -11,13 +11,13 @@ namespace TechChallengeGrupo66.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [AllowAnonymous]
-    public class Controller : ControllerBase
+    public class ContatoController : ControllerBase
     {
         private readonly IContatoService _contatoService;
         private IValidator<Contato> validator = new ContatoValidator();
 
 
-        public Controller(IContatoService contatoService)
+        public ContatoController(IContatoService contatoService)
         {
             _contatoService = contatoService;
         }
