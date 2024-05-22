@@ -21,7 +21,7 @@ namespace TechChallengeGrupo66.Controllers
         {
             _contatoService = contatoService;
         }
-        
+
         [HttpGet, Route("/GetAll")]
         [SwaggerOperation(
             Summary = "Carrega todos os contatos",
@@ -31,7 +31,7 @@ namespace TechChallengeGrupo66.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
 
-           var result = await _contatoService.GetAllAsync();                        
+            var result = await _contatoService.GetAllAsync();
             return Ok(result);
         }
 
@@ -72,13 +72,21 @@ namespace TechChallengeGrupo66.Controllers
         {
             var validationResult = validator.Validate(item);
 
-            if (!validationResult.IsValid)
+            try
             {
-                return BadRequest(validationResult);
+                if (!validationResult.IsValid)
+                {
+                    return BadRequest(validationResult);
+                }
+
+                await _contatoService.AddAsync(item);
+                return Created();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            await _contatoService.AddAsync(item);
-            return Created();
         }
 
         [HttpDelete, Route("/Remove")]
@@ -103,16 +111,22 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> UpdateAsync(Contato item)
         {
-            var validationResult = validator.Validate(item);
-
-            if (!validationResult.IsValid)
+            try
             {
-                return BadRequest(validationResult);
+                var validationResult = validator.Validate(item);
+
+                if (!validationResult.IsValid)
+                {
+                    return BadRequest(validationResult);
+                }
+
+                await _contatoService.UpdateAsync(item);
+                return Ok(item);
             }
-
-            await _contatoService.UpdateAsync(item);
-            return Ok(item);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
     }
 }
