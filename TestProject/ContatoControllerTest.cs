@@ -61,7 +61,7 @@ namespace TestProject
             public async Task GetAllByRegion_ShouldReturnOkResult()
             {
                 // Arrange
-                var id = RegionsType.Norte;
+                var id = RegionsType.Sul;
                 var contatos = new List<Contato> { 
                     new Contato() {
                         Id = 1,
