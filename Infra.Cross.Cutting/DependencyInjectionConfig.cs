@@ -20,8 +20,6 @@ namespace Infra.Cross.Cutting
             AddRepositoryServices(services, configuration);
             AddDatabaseServices(services, configuration);
             
-
-
             //// Outras categorias de dependências podem ser adicionadas aqui
             return services;
         }
@@ -38,25 +36,16 @@ namespace Infra.Cross.Cutting
             services.AddValidatorsFromAssemblyContaining<ContatoValidator>();
 
             // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
-
         }
 
 
         private static void AddDatabaseServices(IServiceCollection services, IConfiguration configuration)
         {
-
-           // Read the connection string from appsettings.
+            // Read the connection string from appsettings.
             var dbConnectionString = configuration.GetConnectionString("DefaultConnection");
 
             // Inject IDbConnection, with implementation from SqlConnection class.
             services.AddScoped<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
-
-
-            //// Configuração para DbContext do SQL Server
-            //var sqlConnectionString = configuration.GetConnectionString("SqlServerConnection");
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(sqlConnectionString));
-
         }
     }
 }

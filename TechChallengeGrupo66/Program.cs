@@ -27,9 +27,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
-
-
 builder.Services.AddProjectDependencies(configuration);
 
 var app = builder.Build();

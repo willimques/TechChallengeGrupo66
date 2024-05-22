@@ -35,7 +35,6 @@ namespace Infra.Data.Repository
                 await _context.DeleteAsync(item);
             }
         }
-
        
         public async Task<T> GetByIdAsync(int id)
         {

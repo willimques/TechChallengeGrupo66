@@ -43,7 +43,6 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> GetByIdAsync([FromQuery] int id)
         {
-
             var result = await _contatoService.GetByIdAsync(id);
             return Ok(result);
         }
@@ -57,7 +56,6 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> GetAllByRegion([FromQuery] RegionsType id)
         {
-
             var result = await _contatoService.GetAllByRegionAsync(id);
             return Ok(result);
         }
@@ -78,7 +76,6 @@ namespace TechChallengeGrupo66.Controllers
             {
                 return BadRequest(validationResult);
             }
-
 
             await _contatoService.AddAsync(item);
             return Created();
@@ -105,7 +102,6 @@ namespace TechChallengeGrupo66.Controllers
             Tags = new[] { "CRUD" }
         )]
         public async Task<IActionResult> UpdateAsync(Contato item)
-
         {
             var validationResult = validator.Validate(item);
 

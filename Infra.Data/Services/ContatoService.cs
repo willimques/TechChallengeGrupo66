@@ -33,24 +33,31 @@ namespace Domain.Services
             return await _contatoRepository.GetByIdAsync(id);
         }
         public async Task AddAsync(Contato item)
-
         {
-
            var _ddd_id  = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
 
             if (_ddd_id == null)
             {
                 throw new Exception("DDD não encontrado");
-            }else
+            }
+            else
             {
                 await _contatoRepository.AddAsync(item);
             }
-        
-            
         }
+
         public async Task UpdateAsync(Contato item)
         {
-            await _contatoRepository.UpdateAsync(item);
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }
+            else
+            {
+                await _contatoRepository.UpdateAsync(item);
+            }
         }
 
         public async Task DeleteAsync(int id)
