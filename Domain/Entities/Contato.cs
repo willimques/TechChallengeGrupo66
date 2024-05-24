@@ -23,6 +23,8 @@ namespace Domain.Entities
             RuleFor(contato => contato.Email).NotEmpty().EmailAddress().WithMessage("O email é obrigatório e deve ser válido.");
             RuleFor(contato => contato.Telefone).NotEmpty().WithMessage("O telefone é obrigatório.")
                 .Matches(@"^\d{4,5}-\d{4}$").WithMessage("O telefone deve estar no formato XXXX-XXXX ou XXXXX-XXXX.");
+            RuleFor(contato => contato.DDD_ID).NotEmpty().WithMessage("O DDD é obrigatório.")
+           .Must(id => id >= 10 && id <= 99).WithMessage("O DDD deve conter exatamente 2 dígitos."); ;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> AddAsync(Contato item)
         {
-            var validationResult = validator.Validate(item);
+            var validationResult = validator.Validate(item);            
 
             try
             {

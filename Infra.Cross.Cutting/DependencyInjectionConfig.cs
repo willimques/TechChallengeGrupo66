@@ -34,6 +34,7 @@ namespace Infra.Cross.Cutting
             services.AddScoped<IDddService, DddService>();
 
             services.AddValidatorsFromAssemblyContaining<ContatoValidator>();
+            services.AddValidatorsFromAssemblyContaining<DDDValidador>();
 
             // services.AddScoped<ISqlRepository<Message>, SqlRepository<Message>>(); // Para SQL Server
         }
