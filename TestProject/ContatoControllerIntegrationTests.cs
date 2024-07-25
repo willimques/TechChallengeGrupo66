@@ -39,8 +39,11 @@ namespace TestProject
         }
 
         [TearDown]
-        public void AfterTest()
-        { Console.WriteLine("AfterTest"); }
+        public void Dispose()
+        {
+            _client.Dispose();
+            _factory.Dispose();
+        }
 
         [Test]
         [Category("Integration")]
