@@ -26,6 +26,7 @@ namespace TestProject
 
 
             [Test]
+            [Category("Unit")]
             public async Task GetAllAsync_ShouldReturnOkResult()
             {
                 // Arrange
@@ -42,6 +43,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task GetByIdAsync_ShouldReturnOkResult()
             {
                 // Arrange
@@ -59,6 +61,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task GetAllByRegion_ShouldReturnOkResult()
             {
                 // Arrange
@@ -91,6 +94,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task AddAsync_WithValidContato_ShouldReturnCreatedResult()
             {
                 // Arrange
@@ -111,6 +115,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task AddAsync_WithInvalidContato_ShouldReturnBadRequestResult()
             {
                 // Arrange
@@ -132,6 +137,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task DeleteAsync_ShouldReturnNoContentResult()
             {
                 // Arrange
@@ -146,6 +152,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task UpdateAsync_WithValidContato_ShouldReturnOkResult()
             {
                 // Arrange
@@ -170,6 +177,7 @@ namespace TestProject
             }
 
             [Test]
+            [Category("Unit")]
             public async Task UpdateAsync_WithInvalidContato_ShouldReturnBadRequestResult()
             {
                 // Arrange
