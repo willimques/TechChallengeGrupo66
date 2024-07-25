@@ -38,6 +38,10 @@ namespace TestProject
             _client = _factory.CreateClient();
         }
 
+        [TearDown]
+        public void AfterTest()
+        { Console.WriteLine("AfterTest"); }
+
         [Test]
         [Category("Integration")]
         public async Task Get_ReturnsSuccessStatusCode()
