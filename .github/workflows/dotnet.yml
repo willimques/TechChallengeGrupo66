@@ -31,6 +31,6 @@ jobs:
       run: dotnet test --no-build --configuration Release --filter TestCategory=Unit
 
     - name: Run integration tests
-      run: dotnet test --no-build https --trust --configuration Release --filter TestCategory=Integration
+      run: dotnet test --no-build --trust --configuration Release --filter TestCategory=Integration
 
       
