@@ -22,5 +22,5 @@ jobs:
     - name: Build do projeto
       run: dotnet build --no-restore
     - name: Executar testes unitários
-      run: dotnet test TechChallengeGrupo66.TestProject.csproj --configuration Release --no-build
+      run: dotnet test TechChallengeGrupo66.TestProject/TechChallengeGrupo66.TestProject.csproj --configuration Release --no-build
 
