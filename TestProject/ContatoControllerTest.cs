@@ -5,6 +5,7 @@ using Domain.Interfaces;
 using global::TechChallengeGrupo66.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using NUnit.Framework;
 
 namespace TestProject
 {
