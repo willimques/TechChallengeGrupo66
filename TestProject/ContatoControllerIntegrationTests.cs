@@ -34,8 +34,10 @@ namespace TestProject
                         services.AddSingleton(_mockContatoService.Object);
                     });
                 });
+            _factory.Server.BaseAddress = new Uri("https://localhost:5000");
 
             _client = _factory.CreateClient();
+         
         }
 
         [TearDown]
