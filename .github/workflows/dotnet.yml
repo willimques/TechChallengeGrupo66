@@ -28,9 +28,9 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Run unit tests
-      run: dotnet test --no-build --configuration Release #--filter FullyQualifiedName~TestProject.ContatoControllerTest
+      run: dotnet test --no-build --configuration Release --filter "FullyQualifiedName~TestProject.ContatoControllerTest"
 
     - name: Run integration tests
-      run: dotnet test --no-build --configuration Release #--filter ullyQualifiedName~TestProject.IntegrationTests
+      run: dotnet test --no-build --configuration Release --filter "FullyQualifiedName~TestProject.IntegrationTests"
 
       
