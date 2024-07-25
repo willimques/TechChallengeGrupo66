@@ -34,8 +34,8 @@ namespace TestProject
                         services.AddSingleton(_mockContatoService.Object);
                     });
                 });
-            _factory.Server.BaseAddress = new Uri("http://localhost:5000");
-            _factory.ClientOptions.BaseAddress = new Uri("http://localhost:5000"); 
+            _factory.Server.BaseAddress = new Uri("https://localhost:5001");
+            _factory.ClientOptions.BaseAddress = new Uri("https://localhost:5001"); 
 
             _client = _factory.CreateClient();
          
