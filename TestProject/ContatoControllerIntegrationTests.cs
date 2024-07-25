@@ -38,7 +38,7 @@ namespace TestProject
             _client = _factory.CreateClient();
         }
 
-        [TearDown]
+        [TearDownAttribute]
         public void Dispose()
         => _client.Dispose();
 
