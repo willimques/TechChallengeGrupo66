@@ -38,10 +38,6 @@ namespace TestProject
             _client = _factory.CreateClient();
         }
 
-        [TearDown]
-        public void Dispose()
-        => _client.Dispose();
-
         [Test]
         [Category("Integration")]
         public async Task Get_ReturnsSuccessStatusCode()
