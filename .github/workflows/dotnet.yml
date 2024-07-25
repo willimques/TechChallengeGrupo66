@@ -19,8 +19,8 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build do projeto
+    - name: Compila o projeto
       run: dotnet build --no-restore
-    - name: Executar testes unitários
-      run: dotnet test TechChallengeGrupo66.TestProject/TechChallengeGrupo66.TestProject.csproj --configuration Release --no-build
-
+      
+    - name: Executar testes unitários e integração
+      run: dotnet test --no-build --configuration Release
