@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Prometheus;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMetricServer();
 
 app.UseAuthorization();
 
