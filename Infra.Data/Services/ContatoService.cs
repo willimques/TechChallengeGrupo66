@@ -8,6 +8,9 @@ using Infra.Data.Interfaces;
 using Domain.Entities;
 using Infra.Data.Repository;
 using Domain.Entities.Enum;
+using System.Collections;
+using Microsoft.AspNetCore.Mvc;
+using MassTransit;
 
 namespace Domain.Services
 {
@@ -16,11 +19,14 @@ namespace Domain.Services
 
         private readonly IContatoRepository _contatoRepository;
         private readonly IDddRepository _dddRepository;
+        private readonly IBus _bus;
 
-        public ContatoService(IContatoRepository contatoRepository, IDddRepository dddRepository)
+        public ContatoService(IContatoRepository contatoRepository, IDddRepository dddRepository, IBus bus)
         {
             _contatoRepository = contatoRepository;
-            _dddRepository = dddRepository; 
+            _dddRepository = dddRepository;
+            _bus = bus;
+
         }
 
         public async Task<IEnumerable<Contato>> GetAllAsync()
@@ -34,7 +40,7 @@ namespace Domain.Services
         }
         public async Task AddAsync(Contato item)
         {
-           var _ddd_id  = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
 
             if (_ddd_id == null)
             {
@@ -43,6 +49,21 @@ namespace Domain.Services
             else
             {
                 await _contatoRepository.AddAsync(item);
+            }
+        }
+
+        public async Task AddQueueAsync(Contato item)
+        {
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }
+            else
+            {
+                var endpoint = await _bus.GetSendEndpoint(new Uri("queue:Contato.Queue.Add"));
+                await endpoint.Send(item);
             }
         }
 
@@ -60,14 +81,36 @@ namespace Domain.Services
             }
         }
 
+        public async Task UpdateQueueAsync(Contato item)
+        {
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }
+            else
+            {
+                var endpoint = await _bus.GetSendEndpoint(new Uri("queue:Contato.Queue.Update"));
+                await endpoint.Send(item);
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             await _contatoRepository.DeleteAsync(id);
         }
 
+        public async Task DeleteQueueAsync(int id)
+        {
+            var item = await _contatoRepository.GetByIdAsync(id);
+            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:Contato.Queue.Delete"));
+            await endpoint.Send(item);
+        }
+
         public async Task<IEnumerable<Contato>> GetAllByRegionAsync(RegionsType idRegiao)
         {
-           return await _contatoRepository.GetAllByRegionAsync(idRegiao);
+            return await _contatoRepository.GetAllByRegionAsync(idRegiao);
         }
     }
 }

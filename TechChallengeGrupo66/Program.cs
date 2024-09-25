@@ -30,7 +30,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-var fila = configuration.GetSection("MassTransit")["NomeFila"] ?? string.Empty;
 var servidor = configuration.GetSection("MassTransit")["Servidor"] ?? string.Empty;
 var usuario = configuration.GetSection("MassTransit")["Usuario"] ?? string.Empty;
 var senha = configuration.GetSection("MassTransit")["Senha"] ?? string.Empty;
