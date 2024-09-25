@@ -11,6 +11,7 @@ using Domain.Entities.Enum;
 using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using MassTransit;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Services
 {
@@ -38,7 +39,7 @@ namespace Domain.Services
         {
             return await _contatoRepository.GetByIdAsync(id);
         }
-        public async Task AddAsync(Contato item)
+        public Task Add(Contato item)
         {
             var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
 
@@ -48,8 +49,10 @@ namespace Domain.Services
             }
             else
             {
-                await _contatoRepository.AddAsync(item);
+                _contatoRepository.Add(item);
             }
+
+            return Task.CompletedTask;
         }
 
         public async Task AddQueueAsync(Contato item)
@@ -67,7 +70,7 @@ namespace Domain.Services
             }
         }
 
-        public async Task UpdateAsync(Contato item)
+        public Task Update(Contato item)
         {
             var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
 
@@ -77,8 +80,10 @@ namespace Domain.Services
             }
             else
             {
-                await _contatoRepository.UpdateAsync(item);
+                _contatoRepository.Update(item);
             }
+
+            return Task.CompletedTask;  
         }
 
         public async Task UpdateQueueAsync(Contato item)
@@ -96,9 +101,10 @@ namespace Domain.Services
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public Task Delete(int id)
         {
-            await _contatoRepository.DeleteAsync(id);
+            _contatoRepository.Delete(id);
+            return Task.CompletedTask;
         }
 
         public async Task DeleteQueueAsync(int id)
@@ -111,6 +117,39 @@ namespace Domain.Services
         public async Task<IEnumerable<Contato>> GetAllByRegionAsync(RegionsType idRegiao)
         {
             return await _contatoRepository.GetAllByRegionAsync(idRegiao);
+        }
+
+        async Task IContatoService.AddAsync(Contato item)
+        {
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }
+            else
+            {
+               await _contatoRepository.AddAsync(item);
+            }
+        }
+
+        async Task IContatoService.UpdateAsync(Contato item)
+        {
+            var _ddd_id = _dddRepository.GetByIdAsync(item.DDD_ID).Result;
+
+            if (_ddd_id == null)
+            {
+                throw new Exception("DDD não encontrado");
+            }
+            else
+            {
+               await _contatoRepository.UpdateAsync(item);
+            }
+        }
+
+        async Task IContatoService.DeleteAsync(int id)
+        {
+            await _contatoRepository.Delete(id); 
         }
     }
 }

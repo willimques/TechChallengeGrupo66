@@ -19,6 +19,8 @@ namespace Infra.Cross.Cutting
         {
             AddRepositoryServices(services, configuration);
             AddDatabaseServices(services, configuration);
+
+
             
             //// Outras categorias de dependências podem ser adicionadas aqui
             return services;

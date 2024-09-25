@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using Domain.Entities;
 using Infra.Data.Interfaces;
 using System.Data;
 
@@ -21,29 +22,66 @@ namespace Infra.Data.Repository
             return await _context.GetAllAsync<T>();
         }
 
+        public Task Add(T item)
+        {
+            _context.Insert(item);
+            return Task.CompletedTask;
+        }
+
+        public Task Delete(int id)
+        {
+            try
+            {
+                var item = _context.Get<T>(id);
+
+                if (item != null)
+                {
+                    _context.Delete(item);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return Task.CompletedTask;
+        }
+
         public async Task AddAsync(T item)
         {
-            await _context.InsertAsync(item);
+           await _context.InsertAsync(item);
         }
 
         public async Task DeleteAsync(int id)
         {
-            var item = await _context.GetAsync<T>(id);
-
-            if (item != null)
+            try
             {
-                await _context.DeleteAsync(item);
+                var item = _context.Get<T>(id);
+
+                if (item != null)
+                {
+                   await _context.DeleteAsync(item);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
-       
+
         public async Task<T> GetByIdAsync(int id)
         {
             return await _context.GetAsync<T>(id);
         }
 
+        public Task Update(T item)
+        {
+            _context.Update(item);
+            return Task.CompletedTask;
+        }
+
         public async Task UpdateAsync(T item)
         {
-            await _context.UpdateAsync(item);            
+            await _context.UpdateAsync(item);
         }
     }
 }
