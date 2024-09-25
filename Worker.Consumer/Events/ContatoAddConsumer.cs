@@ -21,8 +21,7 @@ namespace Worker.Consumer.Events
         public Task Consume(ConsumeContext<Contato> context)
         {
             var contato = context.Message;
-            _contatoService.Add(contato);
-            return Task.CompletedTask;
+            return _contatoService.AddAsync(contato);
         }
     }
 }

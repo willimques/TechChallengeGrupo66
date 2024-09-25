@@ -20,8 +20,7 @@ namespace Worker.Consumer.Events
         public Task Consume(ConsumeContext<Contato> context)
         {
             var contato = context.Message;
-             _contatoService.Delete(contato.Id);
-            return Task.CompletedTask; 
+            return _contatoService.DeleteAsync(contato.Id); 
         }
     }
 }
