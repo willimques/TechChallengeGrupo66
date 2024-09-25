@@ -30,14 +30,38 @@ IHost host = Host.CreateDefaultBuilder(args)
                 cfg.ReceiveEndpoint(filaAdd, e =>
                 {
                     e.Consumer<ContatoAddConsumer>(context);
+
+                    e.PrefetchCount = 1;
+
+                    e.UseCircuitBreaker(cb => {
+                        cb.ResetInterval = TimeSpan.FromSeconds(10);
+                        cb.ActiveThreshold = 1;
+                        cb.TrackingPeriod = TimeSpan.FromSeconds(10);
+                    });
                 });
                 cfg.ReceiveEndpoint(filaUpdate, e =>
                 {
                     e.Consumer<ContatoUpdateConsumer>(context);
+
+                    e.PrefetchCount = 1;
+
+                    e.UseCircuitBreaker(cb => {
+                        cb.ResetInterval = TimeSpan.FromSeconds(10);
+                        cb.ActiveThreshold = 1;
+                        cb.TrackingPeriod = TimeSpan.FromSeconds(10);
+                    });
                 });
                 cfg.ReceiveEndpoint(filaDelete, e =>
                 {
                     e.Consumer<ContatoDeleteConsumer>(context);
+
+                    e.PrefetchCount = 1;
+
+                    e.UseCircuitBreaker(cb => {
+                        cb.ResetInterval = TimeSpan.FromSeconds(10);
+                        cb.ActiveThreshold = 1;
+                        cb.TrackingPeriod = TimeSpan.FromSeconds(10);
+                    });
                 });
                 cfg.ConfigureEndpoints(context);
             });

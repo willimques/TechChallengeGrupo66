@@ -110,6 +110,10 @@ namespace Domain.Services
         public async Task DeleteQueueAsync(int id)
         {
             var item = await _contatoRepository.GetByIdAsync(id);
+            if (item == null)
+            {
+                throw new Exception("Contato não encontrado");
+            }   
             var endpoint = await _bus.GetSendEndpoint(new Uri("queue:Contato.Queue.Delete"));
             await endpoint.Send(item);
         }
