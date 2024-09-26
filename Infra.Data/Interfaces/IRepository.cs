@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,11 @@ namespace Infra.Data.Interfaces
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
+        Task Add(T item);
+        Task Update(T item);
+        Task Delete(int id);
         Task AddAsync(T item);
         Task UpdateAsync(T item);
         Task DeleteAsync(int id);
-
     }
 }

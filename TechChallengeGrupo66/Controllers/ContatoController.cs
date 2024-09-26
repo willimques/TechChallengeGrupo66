@@ -79,7 +79,7 @@ namespace TechChallengeGrupo66.Controllers
                     return BadRequest(validationResult);
                 }
 
-                await _contatoService.AddAsync(item);
+                await _contatoService.AddQueueAsync(item);
                 return Created();
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace TechChallengeGrupo66.Controllers
         )]
         public async Task<IActionResult> DeleteAsync([FromQuery] int id)
         {
-            await _contatoService.DeleteAsync(id);
+            await _contatoService.DeleteQueueAsync(id);
             return NoContent();
         }
 
@@ -120,7 +120,7 @@ namespace TechChallengeGrupo66.Controllers
                     return BadRequest(validationResult);
                 }
 
-                await _contatoService.UpdateAsync(item);
+                await _contatoService.UpdateQueueAsync(item);
                 return Ok(item);
             }
             catch (Exception ex)
