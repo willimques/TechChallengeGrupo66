@@ -153,7 +153,7 @@ namespace Domain.Services
 
         async Task IContatoService.DeleteAsync(int id)
         {
-            await _contatoRepository.Delete(id); 
+            await _contatoRepository.DeleteAsync(id); 
         }
     }
 }
