@@ -20,7 +20,7 @@ namespace Worker.Consumer.Events
         public Task Consume(ConsumeContext<Contato> context)
         {
             var contato = context.Message;
-            return _contatoService.UpdateAsync(contato);
+            return _contatoService.Update(contato);
         }
     }
 }

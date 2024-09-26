@@ -30,19 +30,13 @@ namespace Infra.Data.Repository
 
         public Task Delete(int id)
         {
-            try
-            {
-                var item = _context.Get<T>(id);
+            var item = _context.Get<T>(id);
 
-                if (item != null)
-                {
-                    _context.Delete(item);
-                }
-            }
-            catch (Exception e)
+            if (item != null)
             {
-                Console.WriteLine(e.Message);
+                _context.Delete(item);
             }
+
             return Task.CompletedTask;
         }
 
