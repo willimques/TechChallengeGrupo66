@@ -10,8 +10,9 @@ COPY . .
 # Restaure as dependências para todos os arquivos .csproj encontrados
 RUN find . -name "*.csproj" -exec dotnet restore {} \;
 
-# Compile e publique o projeto especificando o arquivo .csproj principal
-RUN dotnet publish ./TechChallengeGrupo66/API.Producer/API.Producer.csproj -c Release -o /app/publish
+# Compile e publique o projeto especificando o arquivo .csproj principal com o caminho relativo correto
+WORKDIR /src/TechChallengeGrupo66/API.Producer
+RUN dotnet publish -c Release -o /app/publish
 
 # Use uma imagem base mais leve para executar a aplicação
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
