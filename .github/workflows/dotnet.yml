@@ -16,7 +16,10 @@ jobs:
       uses: actions/checkout@v3
       with:
           fetch-depth: 0  # Clona todo o histórico
-
+          
+    - name: Change directory to the correct path
+      run: cd TechChallengeGrupo66
+   
     - name: List files for debugging
       run: ls -R
 
