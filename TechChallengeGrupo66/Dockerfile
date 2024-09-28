@@ -4,17 +4,17 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Defina o diretório de trabalho
 WORKDIR /src
 
-# Copie todos os arquivos para o diretório de trabalho
+# Copie todos os arquivos do projeto para o contêiner
 COPY . .
 
-# Use o comando find para localizar e restaurar o .csproj
-RUN dotnet restore $(find . -name "*.csproj")
+# Restaure as dependências para todos os arquivos .csproj encontrados
+RUN find . -name "*.csproj" -exec dotnet restore {} \;
 
-# Compile e publique o projeto
-RUN dotnet publish $(find . -name "*.csproj") -c Release -o /app/publish
+# Compile e publique o projeto especificando o arquivo .csproj principal
+RUN dotnet publish ./TechChallengeGrupo66/API.Producer/API.Producer.csproj -c Release -o /app/publish
 
 # Use uma imagem base mais leve para executar a aplicação
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "$(find . -name '*.dll')"]
+ENTRYPOINT ["dotnet", "API.Producer.dll"]
