@@ -19,7 +19,10 @@ jobs:
 
     - name: List files for debugging
       run: ls -R
-      
+
+    - name: Print working directory
+      run: pwd
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
