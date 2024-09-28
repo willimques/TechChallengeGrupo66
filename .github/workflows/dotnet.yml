@@ -14,7 +14,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+          fetch-depth: 0  # Clona todo o histórico
 
+    - name: List files for debugging
+      run: ls -R
+      
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
