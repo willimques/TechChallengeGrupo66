@@ -47,18 +47,18 @@ jobs:
     - name: Build and push API.Producer Docker image
       uses: docker/build-push-action@v4
       with:
-        context: .
-        file: Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techchallengegrupo66-api-producer:latest
+          context: ./TechChallengeGrupo66/TechChallengeGrupo66
+          file: ./TechChallengeGrupo66/TechChallengeGrupo66/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest
 
     - name: Build and push Worker.Consumer Docker image
       uses: docker/build-push-action@v4
       with:
-        context: ./Worker.Consumer
-        file: Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techchallengegrupo66-worker-consumer:latest
+          context: ./Worker.Consumer
+          file: ./Worker.Consumer/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest
 
     - name: Deploy with Docker Compose
       run: |
