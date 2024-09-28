@@ -47,7 +47,7 @@ jobs:
     - name: Build and push API.Producer Docker image
       uses: docker/build-push-action@v4
       with:
-        context: ./TechChallengeGrupo66
+        context: ./TechChallengeGrupo66/TechChallengeGrupo66
         file: Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techchallengegrupo66-api-producer:latest
