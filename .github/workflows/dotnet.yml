@@ -56,7 +56,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
           context: ./TechChallengeGrupo66
-          file: ./TechChallengeGrupo66/Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest
 
@@ -64,7 +64,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
           context: ./Worker.Consumer
-          file: ./Worker.Consumer/Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest
 
