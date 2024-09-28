@@ -1,17 +1,20 @@
 # Use uma imagem base do .NET SDK para compilar o projeto
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Defina o diret√≥rio de trabalho
 WORKDIR /src
 
-# Copia o arquivo .csproj e restaura as dependÍncias
-COPY ["Worker.Consumer.csproj", "./"]
-RUN dotnet restore "Worker.Consumer.csproj"
-
-# Copia o restante dos arquivos e compila o projeto
+# Copie todos os arquivos para o diret√≥rio de trabalho
 COPY . .
-RUN dotnet publish -c Release -o /app/publish
 
-# Use uma imagem base mais leve para executar a aplicaÁ„o
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
+# Use o comando find para localizar e restaurar o .csproj
+RUN dotnet restore $(find . -name "*.csproj")
+
+# Compile e publique o projeto
+RUN dotnet publish $(find . -name "*.csproj") -c Release -o /app/publish
+
+# Use uma imagem base mais leve para executar a aplica√ß√£o
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "Worker.Consumer.dll"]
+ENTRYPOINT ["dotnet", "$(find . -name '*.dll')"]
