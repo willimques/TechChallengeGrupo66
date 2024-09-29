@@ -39,4 +39,4 @@ COPY --from=build-env /App/out /App
 RUN echo "Conteúdo do diretório de trabalho após a cópia:" && ls -l /App
 
 # Definir o ponto de entrada
-ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]]
+ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]
