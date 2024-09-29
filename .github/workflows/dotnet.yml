@@ -68,15 +68,15 @@ jobs:
       - name: Build and push API.Producer Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./TechChallengeGrupo66
-          file: ./TechChallengeGrupo66/Dockerfile
+          context: .
+          file: ./Api.Producer/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest
 
       - name: Build and push Worker.Consumer Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./Worker.Consumer
+          context: .
           file: ./Worker.Consumer/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest
