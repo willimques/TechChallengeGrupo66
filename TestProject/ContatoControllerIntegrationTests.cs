@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using Api.Producer.Controllers;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestPlatform.CrossPlatEngine;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechChallengeGrupo66.Controllers;
 
 namespace TestProject
 {   

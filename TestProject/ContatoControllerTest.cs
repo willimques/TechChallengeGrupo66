@@ -2,10 +2,10 @@ using FluentAssertions;
 using Domain.Entities;
 using Domain.Entities.Enum;
 using Domain.Interfaces;
-using global::TechChallengeGrupo66.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
+using Api.Producer.Controllers;
 
 namespace TestProject
 {

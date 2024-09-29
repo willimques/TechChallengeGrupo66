@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace TechChallengeGrupo66.Controllers
+namespace Api.Producer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
