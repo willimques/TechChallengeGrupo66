@@ -1,4 +1,5 @@
 # Use uma imagem base do .NET SDK para compilar o projeto
+<<<<<<< HEAD
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 
@@ -39,3 +40,24 @@ RUN echo "Conteúdo do diretório de trabalho após a cópia:" && ls -l /App
 
 # Definir o ponto de entrada
 ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]
+=======
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Defina o diretÃ³rio de trabalho
+WORKDIR /src
+
+# Copie todos os arquivos para o diretÃ³rio de trabalho
+COPY . .
+
+# Use o comando find para localizar e restaurar o .csproj
+RUN dotnet restore $(find . -name "*.csproj")
+
+# Compile e publique o projeto
+RUN dotnet publish $(find . -name "*.csproj") -c Release -o /app/publish
+
+# Use uma imagem base mais leve para executar a aplicaÃ§Ã£o
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "$(find . -name '*.dll')"]
+>>>>>>> 5ada46a561dc2f07c7f7bf008e8701001b842fc1
