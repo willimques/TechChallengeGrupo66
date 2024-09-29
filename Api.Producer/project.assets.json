@@ -2372,11 +2372,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\TechChallengeGrupo66\\API.Producer.csproj",
+      "projectUniqueName": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\API.Producer\\API.Producer.csproj",
       "projectName": "API.Producer",
-      "projectPath": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\TechChallengeGrupo66\\API.Producer.csproj",
+      "projectPath": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\API.Producer\\API.Producer.csproj",
       "packagesPath": "C:\\Users\\Willian\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\TechChallengeGrupo66\\obj\\",
+      "outputPath": "C:\\Users\\Willian\\source\\repos\\TechChallengeGrupo66\\API.Producer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Willian\\AppData\\Roaming\\NuGet\\NuGet.Config",
