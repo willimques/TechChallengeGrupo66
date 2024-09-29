@@ -1,5 +1,4 @@
 # Use uma imagem base do .NET SDK para compilar o projeto
-<<<<<<< HEAD
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 
@@ -11,6 +10,7 @@ COPY Worker.Consumer/Worker.Consumer.csproj ./Worker.Consumer/
 COPY Domain/Domain.csproj ./Worker.Consumer.Domain/
 COPY Infra.Cross.Cutting/Infra.Cross.Cutting.csproj ./Worker.Consumer.Infra/
 COPY TestProject/TestProject.csproj ./Worker.Consumer.TestProject/
+
 RUN echo "Estrutura de diretórios após a cópia inicial:" && ls -lR /App || exit 1
 
 
@@ -22,7 +22,7 @@ COPY . ./
 
 RUN echo "Listando arquivos em /App/Worker.Consumer após a cópia completa:" && ls -l Worker.Consumer || exit 1
 
-# Compile e publique a aplicação Worker.Consumer
+# Compile e publique a aplicação Api.Producer
 RUN dotnet publish Worker.Consumer/Worker.Consumer.csproj -c Release -o out
 
 # Verificar se o .dll foi criado corretamente
@@ -39,25 +39,4 @@ COPY --from=build-env /App/out /App
 RUN echo "Conteúdo do diretório de trabalho após a cópia:" && ls -l /App
 
 # Definir o ponto de entrada
-ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]
-=======
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-# Defina o diretÃ³rio de trabalho
-WORKDIR /src
-
-# Copie todos os arquivos para o diretÃ³rio de trabalho
-COPY . .
-
-# Use o comando find para localizar e restaurar o .csproj
-RUN dotnet restore $(find . -name "*.csproj")
-
-# Compile e publique o projeto
-RUN dotnet publish $(find . -name "*.csproj") -c Release -o /app/publish
-
-# Use uma imagem base mais leve para executar a aplicaÃ§Ã£o
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
-WORKDIR /app
-COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "$(find . -name '*.dll')"]
->>>>>>> 5ada46a561dc2f07c7f7bf008e8701001b842fc1
+ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]]
