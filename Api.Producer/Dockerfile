@@ -28,7 +28,7 @@ RUN dotnet publish Api.Producer/API.Producer.csproj -c Release -o out
 # Verificar se o .dll foi criado corretamente
 RUN echo "Conteúdo do diretório /App/out:" && ls -l /App/out
 
-# Use a imagem de runtime do ASP.NET para executar o aplicativo
+# Use a imagem de runtime do ASP.NET para executar o aplicativo teste
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
 
