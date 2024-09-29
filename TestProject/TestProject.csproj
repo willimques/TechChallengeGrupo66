@@ -31,7 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Infra.Cross.Cutting\Infra.Cross.Cutting.csproj" />
     <ProjectReference Include="..\Infra.Data\Infra.Data.csproj" />
-    <ProjectReference Include="..\TechChallengeGrupo66\API.Producer.csproj" />
+    <ProjectReference Include="..\API.Producer\API.Producer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

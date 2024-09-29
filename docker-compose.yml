@@ -4,15 +4,16 @@ services:
   api-producer:
     build:
       context: .
-      dockerfile: TechChallengeGrupo66/Dockerfile
+      dockerfile: Api.Producer/Dockerfile
     ports:
       - "5000:80"  # Mapeie as portas conforme necessário
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 
+
   worker-consumer:
     build:
-      context: ./Worker.Consumer
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Worker.Consumer/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production

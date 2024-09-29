@@ -6,23 +6,24 @@ WORKDIR /App
 RUN echo "Diretório atual:" && pwd
 
 # Copiar o arquivo de solução e os projetos compartilhados
-COPY Worker.Consumer/Worker.Consumer.csproj ./Worker.Consumer/
-COPY Domain/Domain.csproj ./Worker.Consumer.Domain/
-COPY Infra.Cross.Cutting/Infra.Cross.Cutting.csproj ./Worker.Consumer.Infra/
-COPY TestProject/TestProject.csproj ./Worker.Consumer.TestProject/
+COPY Api.Producer/API.Producer.csproj ./Api.Producer/
+COPY Domain/Domain.csproj ./Api.Producer.Domain/
+COPY Infra.Cross.Cutting/Infra.Cross.Cutting.csproj ./Api.Producer.Infra/
+COPY TestProject/TestProject.csproj ./Api.Producer.TestProject/
+
 RUN echo "Estrutura de diretórios após a cópia inicial:" && ls -lR /App || exit 1
 
 
 # Restaure as dependências para o projeto de solução
-RUN dotnet restore Worker.Consumer/Worker.Consumer.csproj
+RUN dotnet restore Api.Producer/API.Producer.csproj
 
 # Copiar todos os arquivos restantes
 COPY . ./
 
-RUN echo "Listando arquivos em /App/Worker.Consumer após a cópia completa:" && ls -l Worker.Consumer || exit 1
+RUN echo "Listando arquivos em /App/Api.Producer após a cópia completa:" && ls -l Api.Producer || exit 1
 
-# Compile e publique a aplicação Worker.Consumer
-RUN dotnet publish Worker.Consumer/Worker.Consumer.csproj -c Release -o out
+# Compile e publique a aplicação Api.Producer
+RUN dotnet publish Api.Producer/API.Producer.csproj -c Release -o out
 
 # Verificar se o .dll foi criado corretamente
 RUN echo "Conteúdo do diretório /App/out:" && ls -l /App/out
@@ -38,4 +39,4 @@ COPY --from=build-env /App/out /App
 RUN echo "Conteúdo do diretório de trabalho após a cópia:" && ls -l /App
 
 # Definir o ponto de entrada
-ENTRYPOINT ["dotnet", "/App/Worker.Consumer.dll"]
+ENTRYPOINT ["dotnet", "/App/API.Producer.dll"]
