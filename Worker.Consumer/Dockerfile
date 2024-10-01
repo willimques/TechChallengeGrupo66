@@ -35,7 +35,7 @@ WORKDIR /App
 # Copiar os arquivos publicados para a imagem de runtime
 COPY --from=build-env /App/out /App
 
-# Verificar se o .dll foi copiado corretamente para o diretório de trabalho
+# Verificar se o .dll foi copiado corretamente para o diretório de trabalho.
 RUN echo "Conteúdo do diretório de trabalho após a cópia:" && ls -l /App
 
 # Definir o ponto de entrada
