@@ -52,6 +52,14 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Set environment variables for RabbitMQ
+        env:
+          RABBITMQ_HOST: 'localhost'
+          RABBITMQ_PORT: '5672'
+          RABBITMQ_USERNAME: 'guest'
+          RABBITMQ_PASSWORD: 'guest'
+
+
       - name: Run unit tests
         run: dotnet test ./TestProject/TestProject.csproj --configuration Release
 
