@@ -35,6 +35,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
+    services:
+      rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+          - 5672:5672
+          - 15672:15672
+        options: --name rabbitmq-test
+        
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -45,13 +53,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Run unit tests
-        run: dotnet test ./TestProject/TestProject.csproj --configuration Release
+        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
 
-      #- name: Run unit tests
-      #  run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
-
-     # - name: Run integration tests
-     #   run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
+      - name: Run integration tests
+        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
 
   # Estágio 3: Dockerize
   dockerize:
