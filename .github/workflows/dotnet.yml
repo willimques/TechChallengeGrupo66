@@ -53,10 +53,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Run unit tests
-        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
+        run: dotnet test ./TestProject/TestProject.csproj --configuration Release
 
-      - name: Run integration tests
-        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
+      #- name: Run unit tests
+       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
+
+      #- name: Run integration tests
+       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
 
   # Estágio 3: Dockerize
   dockerize:
