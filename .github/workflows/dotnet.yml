@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-      - name: Clean solution
-        run: dotnet clean TechChallengeGrupo66.sln
+    # - name: Clean solution
+    #  run: dotnet clean TechChallengeGrupo66.sln
 
       - name: Install dependencies
         run: dotnet restore TechChallengeGrupo66.sln
@@ -35,6 +35,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
+    services:
+      rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+          - 5672:5672
+          - 15672:15672
+        options: --name rabbitmq-test
+        env:
+          RABBITMQ_HOST: 'localhost'
+          RABBITMQ_PORT: '5672'
+          RABBITMQ_USERNAME: 'guest'
+          RABBITMQ_PASSWORD: 'guest'
+        
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -45,10 +58,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Run unit tests
-        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
+        run: dotnet test ./TestProject/TestProject.csproj --configuration Release
 
-      - name: Run integration tests
-        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
+      #- name: Run unit tests
+       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
+
+      #- name: Run integration tests
+       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
 
   # Estágio 3: Dockerize
   dockerize:
