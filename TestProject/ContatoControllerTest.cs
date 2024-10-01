@@ -30,7 +30,7 @@ namespace TestProject
             public async Task GetAllAsync_ShouldReturnOkResult()
             {
                 // Arrange
-                var contatos = new List<Contato> { new Contato(), new Contato() };
+                var contatos = new List<Contato> { new(), new Contato() };
                 _contatoServiceMock.Setup(x => x.GetAllAsync()).ReturnsAsync(contatos);
 
                 // Act
