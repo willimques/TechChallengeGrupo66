@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-      - name: Clean solution
-        run: dotnet clean TechChallengeGrupo66.sln
+    # - name: Clean solution
+    #  run: dotnet clean TechChallengeGrupo66.sln
 
       - name: Install dependencies
         run: dotnet restore TechChallengeGrupo66.sln
@@ -47,8 +47,8 @@ jobs:
       - name: Run unit tests
         run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
 
-     # - name: Run integration tests
-      #  run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
+      - name: Run integration tests
+        run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
 
   # Estágio 3: Dockerize
   dockerize:
