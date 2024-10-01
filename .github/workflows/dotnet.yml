@@ -44,6 +44,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Run unit tests
+        run: dotnet test ./TestProject/TestProject.csproj --no-build --configuration Release
+
       #- name: Run unit tests
       #  run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
 
