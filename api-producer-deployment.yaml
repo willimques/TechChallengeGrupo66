@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api-producer
-        image: <SEU_USUARIO_DOCKER_HUB>/api-producer:latest
+        image: wmarques85/api-producer:latest
         ports:
         - containerPort: 5000
         env:

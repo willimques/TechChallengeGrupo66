@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: worker-consumer
-        image: <SEU_USUARIO_DOCKER_HUB>/worker-consumer:latest
+        image: wmarques85/worker-consumer:latest
         env:
         - name: RABBITMQ_HOST
           value: "rabbitmq-service"
