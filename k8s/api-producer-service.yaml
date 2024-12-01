@@ -8,6 +8,7 @@ spec:
     app: api-producer
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: ClusterIP
+      port: 5000        # Porta dentro do container
+      targetPort: 5000  # Porta do container
+      nodePort: 30009   # Porta exposta no nó (escolha entre 30000-32767)
+  type: NodePort
