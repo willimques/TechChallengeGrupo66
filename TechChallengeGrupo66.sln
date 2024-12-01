@@ -13,21 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{221FF07F-73F7-4A04-94A1-F04FF169E650}"
 	ProjectSection(SolutionItems) = preProject
+		k8s\api-producer-deployment.yaml = k8s\api-producer-deployment.yaml
+		k8s\api-producer-service.yaml = k8s\api-producer-service.yaml
 		docker-compose.yml = docker-compose.yml
+		k8s\namespace.yaml = k8s\namespace.yaml
+		k8s\worker-consumer-deployment.yaml = k8s\worker-consumer-deployment.yaml
+		k8s\worker-consumer-service.yaml = k8s\worker-consumer-service.yaml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker.Consumer", "Worker.Consumer\Worker.Consumer.csproj", "{74C3451F-CBCE-4DB6-8CEF-11C2D8C034EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Producer", "Api.Producer\API.Producer.csproj", "{B2C76EC1-2AAE-4543-87F9-2BFEF10BE551}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{5E18B5A5-5A8B-4A4A-B513-CE29E8F55D0E}"
-	ProjectSection(SolutionItems) = preProject
-		api-producer-deployment.yaml = api-producer-deployment.yaml
-		api-producer-service.yaml = api-producer-service.yaml
-		namespace.yaml = namespace.yaml
-		worker-consumer-deployment.yaml = worker-consumer-deployment.yaml
-		worker-consumer-service.yaml = worker-consumer-service.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
