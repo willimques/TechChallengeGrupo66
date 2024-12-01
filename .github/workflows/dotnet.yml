@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-    # - name: Clean solution
-    #  run: dotnet clean TechChallengeGrupo66.sln
+      - name: Clean solution
+        run: dotnet clean TechChallengeGrupo66.sln
 
       - name: Install dependencies
         run: dotnet restore TechChallengeGrupo66.sln
