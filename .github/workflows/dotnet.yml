@@ -102,7 +102,10 @@ jobs:
       # 1. Checkout do código
       - name: Checkout repository
         uses: actions/checkout@v3
-  
+
+      - name: List files
+        run: ls -l
+ 
       # 2. Configuração do KUBECONFIG com o arquivo armazenado no secrets
       - name: Configure kubeconfig
         run: |
