@@ -22,8 +22,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-    # - name: Clean solution
-    #  run: dotnet clean TechChallengeGrupo66.sln
 
       - name: Install dependencies
         run: dotnet restore TechChallengeGrupo66.sln
@@ -59,12 +57,6 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test ./TestProject/TestProject.csproj --configuration Release
-
-      #- name: Run unit tests
-       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Unit
-
-      #- name: Run integration tests
-       # run: dotnet test TechChallengeGrupo66.sln  --no-build --configuration Release --filter TestCategory=Integration
 
   # Estágio 3: Dockerize
   dockerize:
@@ -106,4 +98,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-   
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Set up kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" > kubeconfig
+          export KUBECONFIG=kubeconfig
+
+      - name: Apply Kubernetes manifests
+        run: kubectl apply -f ./k8s/
