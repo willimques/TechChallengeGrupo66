@@ -112,7 +112,7 @@ jobs:
       # 3. Configuração do KUBECONFIG com o arquivo armazenado no secrets
       - name: Configure kubeconfig
         run: |
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+          echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
   
       # 4. Testar conexão com o cluster
