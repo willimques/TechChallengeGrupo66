@@ -110,8 +110,8 @@ jobs:
 
       - name: Load Docker images into Kind cluster
         run: |
-          kind load docker-image ${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest --name kind
-          kind load docker-image ${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest --name kind
+          kind load docker-image ${{ secrets.DOCKER_HUB_USERNAME }}/api-producer --name kind
+          kind load docker-image ${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer --name kind
 
       - name: Apply Kubernetes manifests
         run: |
