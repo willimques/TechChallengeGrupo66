@@ -103,32 +103,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
   
-      # 2. Configuração do kubectl
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'latest'
-  
-      # 3. Configuração do KUBECONFIG com o arquivo armazenado no secrets
+      # 2. Configuração do KUBECONFIG com o arquivo armazenado no secrets
       - name: Configure kubeconfig
         run: |
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig.yaml
-          export KUBECONFIG=$(pwd)/kubeconfig.yaml
-
-      - name: Debug kubeconfig
-        run: cat kubeconfig.yaml
   
-      # 4. Testar conexão com o cluster
+      # 3. Testar conexão com o cluster usando o arquivo kubeconfig
       - name: Test Kubernetes connection
-        run: kubectl get nodes
+        run: kubectl --kubeconfig=kubeconfig.yaml get nodes
   
-      # 5. Atualizar imagens no Kubernetes
+      # 4. Atualizar imagens no Kubernetes (usando --kubeconfig)
       - name: Push Docker images to Kubernetes
         run: |
-          kubectl -n tech-challenge set image deployment/api-producer api-producer=${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest
-          kubectl -n tech-challenge set image deployment/worker-consumer worker-consumer=${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest
+          kubectl --kubeconfig=kubeconfig.yaml -n tech-challenge set image deployment/api-producer api-producer=${{ secrets.DOCKER_HUB_USERNAME }}/api-producer:latest
+          kubectl --kubeconfig=kubeconfig.yaml -n tech-challenge set image deployment/worker-consumer worker-consumer=${{ secrets.DOCKER_HUB_USERNAME }}/worker-consumer:latest
   
-      # 6. Aplicação dos manifestos
+      # 5. Aplicação dos manifestos (usando --kubeconfig)
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f k8s/
+          kubectl --kubeconfig=kubeconfig.yaml apply -f k8s/
