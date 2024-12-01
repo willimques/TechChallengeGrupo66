@@ -2,31 +2,31 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 
-# Mostrar o diret髍io atual (ponto de partida)
-RUN echo "Diret髍io atual:" && pwd
+# Mostrar o diret贸rio atual (ponto de partida)
+RUN echo "Diret贸rio atual:" && pwd
 
-# Copiar o arquivo de solu玢o e os projetos compartilhados
+# Copiar o arquivo de solu莽茫o e os projetos compartilhados
 COPY Worker.Consumer/Worker.Consumer.csproj ./Worker.Consumer/
 COPY Domain/Domain.csproj ./Worker.Consumer.Domain/
 COPY Infra.Cross.Cutting/Infra.Cross.Cutting.csproj ./Worker.Consumer.Infra/
 COPY TestProject/TestProject.csproj ./Worker.Consumer.TestProject/
 
-RUN echo "Estrutura de diret髍ios ap髎 a c髉ia inicial:" && ls -lR /App || exit 1
+RUN echo "Estrutura de diret贸rios ap贸s a c贸pia inicial:" && ls -lR /App || exit 1
 
 
-# Restaure as depend阯cias para o projeto de solu玢o
+# Restaure as depend锚ncias para o projeto de solu莽茫o
 RUN dotnet restore Worker.Consumer/Worker.Consumer.csproj
 
 # Copiar todos os arquivos restantes
 COPY . ./
 
-RUN echo "Listando arquivos em /App/Worker.Consumer ap髎 a c髉ia completa:" && ls -l Worker.Consumer || exit 1
+RUN echo "Listando arquivos em /App/Worker.Consumer ap贸s a c贸pia completa:" && ls -l Worker.Consumer || exit 1
 
-# Compile e publique a aplica玢o Api.Producer
+# Compile e publique a aplica莽茫o Api.Producer
 RUN dotnet publish Worker.Consumer/Worker.Consumer.csproj -c Release -o out
 
 # Verificar se o .dll foi criado corretamente
-RUN echo "Conte鷇o do diret髍io /App/out:" && ls -l /App/out
+RUN echo "Conte煤do do diret贸rio /App/out:" && ls -l /App/out
 
 # Use a imagem de runtime do ASP.NET para executar o aplicativo
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -35,8 +35,8 @@ WORKDIR /App
 # Copiar os arquivos publicados para a imagem de runtime
 COPY --from=build-env /App/out /App
 
-# Verificar se o .dll foi copiado corretamente para o diret髍io de trabalho.
-RUN echo "Conte鷇o do diret髍io de trabalho ap髎 a c髉ia:" && ls -l /App
+# Verificar se o .dll foi copiado corretamente para o diret贸rio de trabalho.
+RUN echo "Conte煤do do diret贸rio de trabalho ap贸s a c贸pia:" && ls -l /App
 
 # Definir o ponto de entrada
 ENTRYPOINT ["dotnet", "Worker.Consumer.dll"]
