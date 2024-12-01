@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-consumer
+  namespace: tech-challenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-consumer
+  template:
+    metadata:
+      labels:
+        app: worker-consumer
+    spec:
+      containers:
+      - name: worker-consumer
+        image: <SEU_USUARIO_DOCKER_HUB>/worker-consumer:latest
+        env:
+        - name: RABBITMQ_HOST
+          value: "rabbitmq-service"

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-producer
+  namespace: tech-challenge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-producer
+  template:
+    metadata:
+      labels:
+        app: api-producer
+    spec:
+      containers:
+      - name: api-producer
+        image: <SEU_USUARIO_DOCKER_HUB>/api-producer:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: RABBITMQ_HOST
+          value: "rabbitmq-service"
