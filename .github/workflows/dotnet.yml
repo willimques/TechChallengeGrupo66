@@ -114,6 +114,9 @@ jobs:
         run: |
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig.yaml
           export KUBECONFIG=$(pwd)/kubeconfig.yaml
+
+      - name: Debug kubeconfig
+        run: cat kubeconfig.yaml
   
       # 4. Testar conexão com o cluster
       - name: Test Kubernetes connection
