@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		k8s\api-producer-deployment.yaml = k8s\api-producer-deployment.yaml
 		k8s\api-producer-service.yaml = k8s\api-producer-service.yaml
 		docker-compose.yml = docker-compose.yml
+		k8s\ingress.yaml = k8s\ingress.yaml
 		k8s\namespace.yaml = k8s\namespace.yaml
 		k8s\worker-consumer-deployment.yaml = k8s\worker-consumer-deployment.yaml
 		k8s\worker-consumer-service.yaml = k8s\worker-consumer-service.yaml
